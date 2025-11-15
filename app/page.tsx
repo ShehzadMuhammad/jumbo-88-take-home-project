@@ -13,6 +13,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
+import Grid from "@mui/material/GridLegacy";
 
 const packages = [
   {
@@ -71,6 +72,14 @@ const packages = [
   },
 ];
 
+const mostPopularPackage = packages.find((pkg) => pkg.tag === "Most Popular");
+const starterPackage = packages.find(
+  (pkg) => pkg.tag === "Best For New Players"
+);
+const gridPackages = packages.filter(
+  (pkg) => pkg.tag !== "Most Popular" && pkg.tag !== "Best For New Players"
+);
+
 const Page = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -87,7 +96,7 @@ const Page = () => (
       }}
     >
       <Container maxWidth="sm" sx={{ pt: 4, pb: 12 }}>
-        <Stack spacing={4}>
+        <Stack spacing={3}>
           <Box textAlign="center">
             <Typography
               variant="h5"
@@ -112,14 +121,19 @@ const Page = () => (
             description="3 turbo-charged bundles, optimized for your first deposit. We highlight the Starter Pack so you know where to begin."
           />
 
-          <Stack spacing={3}>
-            {packages.map((bundle, index) => (
-              <PackageCard
-                key={bundle.title}
-                {...bundle}
-                highlighted={index === 0}
-              />
-            ))}
+          <Stack spacing={2.5}>
+            {mostPopularPackage && (
+              <PackageCard {...mostPopularPackage} highlighted />
+            )}
+            {starterPackage && <PackageCard {...starterPackage} />}
+
+            <Grid container spacing={2}>
+              {gridPackages.map((bundle) => (
+                <Grid item xs={6} key={bundle.title}>
+                  <PackageCard {...bundle} />
+                </Grid>
+              ))}
+            </Grid>
           </Stack>
         </Stack>
       </Container>
