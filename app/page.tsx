@@ -2,7 +2,6 @@
 
 import AboutFreeSpinsDialog from "@/components/AboutFreeSpinsDialog";
 import DailyPackages from "@/components/DailyPackages";
-import NavBar from "@/components/NavBar";
 import PromotionPackages from "@/components/PromotionPackages";
 import WhatAreSCDialog from "@/components/WhatAreSCDialog";
 import { colors, theme } from "@/constants";
@@ -39,7 +38,6 @@ const Page = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <NavBar />
       <Box
         sx={{
           minHeight: "100vh",
