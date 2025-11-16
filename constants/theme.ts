@@ -1,20 +1,38 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
-const darkBg = '#0f1115';
-const neonGreen = '#00ffaa';
-const neonGold = '#ffc400';
-const neonOrange = '#ff6d3a';
+// Color constants - export for use across components
+export const colors = {
+  darkBg: "#0f1115",
+  neonGreen: "#00ffaa",
+  neonGold: "#ffc400",
+  neonOrange: "#ff6d3a",
+  paperBg: "#171a21",
+  textPrimary: "#f5f7fa",
+  textSecondary: "#9aa0b5",
+  white: "#fff",
+  // Highlight colors for package cards
+  highlightPurple: "#a855f7",
+  highlightGreen: "#22c55e",
+  // Additional colors
+  darkText: "#0f1115",
+  goldRgba: "rgba(255,196,0,0.15)",
+} as const;
+
+const darkBg = colors.darkBg;
+const neonGreen = colors.neonGreen;
+const neonGold = colors.neonGold;
+const neonOrange = colors.neonOrange;
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     background: {
       default: darkBg,
-      paper: '#171a21',
+      paper: colors.paperBg,
     },
     primary: {
       main: neonGreen,
-      contrastText: '#0f1115',
+      contrastText: colors.darkText,
     },
     secondary: {
       main: neonGold,
@@ -26,8 +44,8 @@ const theme = createTheme({
       main: neonOrange,
     },
     text: {
-      primary: '#f5f7fa',
-      secondary: '#9aa0b5',
+      primary: colors.textPrimary,
+      secondary: colors.textSecondary,
     },
   },
   typography: {
@@ -40,7 +58,7 @@ const theme = createTheme({
     },
     button: {
       fontWeight: 700,
-      textTransform: 'none',
+      textTransform: "none",
       letterSpacing: 0.5,
     },
   },
@@ -51,7 +69,7 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundImage: 'linear-gradient(145deg, #13151b, #0c0d11)',
+          backgroundImage: "linear-gradient(145deg, #13151b, #0c0d11)",
           borderRadius: 20,
         },
       },
@@ -67,4 +85,3 @@ const theme = createTheme({
 });
 
 export default theme;
-

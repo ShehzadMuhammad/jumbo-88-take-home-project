@@ -20,3 +20,15 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* Hide Next.js dev indicator button */
+#__next-build-watcher,
+[data-nextjs-toast],
+[data-nextjs-dialog] {
+  display: none !important;
+}
+
+/* Hide any Next.js development overlay buttons */
+body > div[style*="position: fixed"][style*="bottom"] {
+  display: none !important;
+}

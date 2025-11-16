@@ -1,3 +1,3 @@
-export { default as theme } from './theme';
+export { default as theme, colors } from './theme';
 export { promotionPackages, dailyPackages } from './data';
 
