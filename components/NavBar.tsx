@@ -1,8 +1,10 @@
+import logo from "@/assets/logo.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import Image from "next/image";
 
-const TopNav = () => (
+const NavBar = () => (
   <Box
     component="header"
     sx={{
@@ -32,9 +34,14 @@ const TopNav = () => (
     </Box>
 
     <Box flex={1} display="flex" justifyContent="center">
-      <Typography variant="h6" fontWeight={700} textAlign="center">
-        Jumbo88
-      </Typography>
+      <Image
+        src={logo}
+        alt="Jumbo logo"
+        width={96}
+        height={28}
+        style={{ objectFit: "contain" }}
+        priority
+      />
     </Box>
 
     <Box flex={1} display="flex" justifyContent="flex-end">
@@ -49,4 +56,4 @@ const TopNav = () => (
   </Box>
 );
 
-export default TopNav;
+export default NavBar;

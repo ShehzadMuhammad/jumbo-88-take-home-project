@@ -69,9 +69,10 @@ const PackageCard = ({
         overflow: "hidden",
         border: borderColor,
         background: backgroundGradient,
-        transition: "transform 200ms ease, box-shadow 200ms ease",
+        // Keep the card static; no lift or movement on click/hover
+        transform: "translateY(0)",
+        transition: "box-shadow 200ms ease",
         "&:hover": {
-          transform: "translateY(-4px)",
           boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
         },
       }}
