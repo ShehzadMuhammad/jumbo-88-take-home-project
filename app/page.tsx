@@ -3,7 +3,7 @@
 import DailyPackages from "@/components/DailyPackages";
 import PackageCard from "@/components/PackageCard";
 import TopNav from "@/components/TopNav";
-import { theme } from "@/constants";
+import { promotionPackages, theme } from "@/constants";
 import {
   Box,
   Container,
@@ -17,64 +17,13 @@ import {
 import Grid from "@mui/material/GridLegacy";
 import { SyntheticEvent, useState } from "react";
 
-const packages = [
-  {
-    title: "Starter",
-    coins: 20000,
-    freeSC: 20,
-    oldPrice: 20,
-    price: 9.99,
-    savingsPct: 50,
-    tag: "Best For New Players",
-  },
-  {
-    title: "Elite",
-    coins: 60000,
-    freeSC: 60,
-    oldPrice: 60,
-    price: 39.99,
-    savingsPct: 50,
-    tag: "Most Popular",
-  },
-  {
-    title: "Jumbo88 Reload",
-    coins: 200000,
-    freeSC: 200,
-    oldPrice: 200,
-    price: 188.88,
-    tag: "Save 6%",
-  },
-  {
-    title: "Super Reload",
-    coins: 105000,
-    freeSC: 105,
-    oldPrice: 105,
-    price: 99.99,
-    tag: "Save 5%",
-  },
-  {
-    title: "Quick Reload",
-    coins: 52000,
-    freeSC: 52,
-    oldPrice: 52,
-    price: 49.99,
-    tag: "Save 4%",
-  },
-  {
-    title: "Mini Reload",
-    coins: 31000,
-    freeSC: 31,
-    oldPrice: 31,
-    price: 29.99,
-    tag: "Save 3%",
-  },
-];
-
-const mostPopularPackage = packages.find((pkg) => pkg.tag === "Most Popular");
-const starterPackage = packages.find(
+const mostPopularPackage = promotionPackages.find(
+  (pkg) => pkg.tag === "Most Popular"
+);
+const starterPackage = promotionPackages.find(
   (pkg) => pkg.tag === "Best For New Players"
 );
-const gridPackages = packages.filter(
+const gridPackages = promotionPackages.filter(
   (pkg) => pkg.tag !== "Most Popular" && pkg.tag !== "Best For New Players"
 );
 
@@ -144,9 +93,14 @@ const Page = () => {
             {tab === PROMOTIONS_TAB && (
               <Stack spacing={2.5}>
                 {mostPopularPackage && (
-                  <PackageCard {...mostPopularPackage} highlighted />
+                  <PackageCard
+                    {...mostPopularPackage}
+                    highlightColor="#a855f7"
+                  />
                 )}
-                {starterPackage && <PackageCard {...starterPackage} />}
+                {starterPackage && (
+                  <PackageCard {...starterPackage} highlightColor="#22c55e" />
+                )}
 
                 <Grid
                   container

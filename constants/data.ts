@@ -1,0 +1,92 @@
+export const promotionPackages = [
+  {
+    title: "Starter",
+    coins: 20000,
+    freeSC: 20,
+    oldPrice: 20,
+    price: 9.99,
+    savingsPct: 50,
+    tag: "Best For New Players",
+  },
+  {
+    title: "Elite",
+    coins: 60000,
+    freeSC: 60,
+    oldPrice: 60,
+    price: 39.99,
+    savingsPct: 50,
+    tag: "Most Popular",
+  },
+  {
+    title: "Jumbo88 Reload",
+    coins: 200000,
+    freeSC: 200,
+    oldPrice: 200,
+    price: 188.88,
+    tag: "Save 6%",
+  },
+  {
+    title: "Super Reload",
+    coins: 105000,
+    freeSC: 105,
+    oldPrice: 105,
+    price: 99.99,
+    tag: "Save 5%",
+  },
+  {
+    title: "Quick Reload",
+    coins: 52000,
+    freeSC: 52,
+    oldPrice: 52,
+    price: 49.99,
+    tag: "Save 4%",
+  },
+  {
+    title: "Mini Reload",
+    coins: 31000,
+    freeSC: 31,
+    oldPrice: 31,
+    price: 29.99,
+    tag: "Save 3%",
+  },
+];
+
+export const dailyPackages = [
+  { title: "Quick 10", coins: 10000, freeSC: 10, price: 9.99, oldPrice: 11.99 },
+  {
+    title: "Quick 20",
+    coins: 20000,
+    freeSC: 20,
+    price: 19.99,
+    oldPrice: 24.99,
+  },
+  {
+    title: "Quick 40",
+    coins: 40000,
+    freeSC: 40,
+    price: 39.99,
+    oldPrice: 47.99,
+  },
+  {
+    title: "Quick 75",
+    coins: 75000,
+    freeSC: 75,
+    price: 74.99,
+    oldPrice: 89.99,
+  },
+  {
+    title: "Quick 100",
+    coins: 100000,
+    freeSC: 100,
+    price: 99.99,
+    oldPrice: 119.99,
+  },
+  {
+    title: "Quick 150",
+    coins: 150000,
+    freeSC: 150,
+    price: 149.99,
+    oldPrice: 179.99,
+  },
+];
+
