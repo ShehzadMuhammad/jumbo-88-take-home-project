@@ -1,8 +1,7 @@
 "use client";
 
+import DailyPackages from "@/components/DailyPackages";
 import PackageCard from "@/components/PackageCard";
-import SectionHeader from "@/components/SectionHeader";
-import StickyBottomCTA from "@/components/StickyBottomCTA";
 import TopNav from "@/components/TopNav";
 import { theme } from "@/constants";
 import {
@@ -10,10 +9,13 @@ import {
   Container,
   CssBaseline,
   Stack,
+  Tab,
+  Tabs,
   ThemeProvider,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/GridLegacy";
+import { SyntheticEvent, useState } from "react";
 
 const packages = [
   {
@@ -40,7 +42,6 @@ const packages = [
     freeSC: 200,
     oldPrice: 200,
     price: 188.88,
-    savingsPct: 6,
     tag: "Save 6%",
   },
   {
@@ -49,7 +50,6 @@ const packages = [
     freeSC: 105,
     oldPrice: 105,
     price: 99.99,
-    savingsPct: 5,
     tag: "Save 5%",
   },
   {
@@ -58,7 +58,6 @@ const packages = [
     freeSC: 52,
     oldPrice: 52,
     price: 49.99,
-    savingsPct: 4,
     tag: "Save 4%",
   },
   {
@@ -67,7 +66,6 @@ const packages = [
     freeSC: 31,
     oldPrice: 31,
     price: 29.99,
-    savingsPct: 3,
     tag: "Save 3%",
   },
 ];
@@ -80,71 +78,104 @@ const gridPackages = packages.filter(
   (pkg) => pkg.tag !== "Most Popular" && pkg.tag !== "Best For New Players"
 );
 
-const Page = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <TopNav />
-    <Box
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: "#0f1115",
-        backgroundImage:
-          "radial-gradient(circle at 20% 20%, rgba(0,255,170,0.15), transparent 45%), radial-gradient(circle at 80% 0%, rgba(255,109,58,0.15), transparent 35%)",
-        color: "#fff",
-        pt: "104px",
-        pb: 10,
-      }}
-    >
-      <Container maxWidth="sm" sx={{ pt: 4, pb: 12 }}>
-        <Stack spacing={3}>
-          <Box textAlign="center">
-            <Typography
-              variant="h5"
-              fontWeight={700}
-              color="secondary.main"
-              gutterBottom
+const PROMOTIONS_TAB = 0;
+const DAILY_TAB = 1;
+
+const Page = () => {
+  const [tab, setTab] = useState(PROMOTIONS_TAB);
+
+  const handleTabChange = (_event: SyntheticEvent, newValue: number) => {
+    setTab(newValue);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <TopNav />
+      <Box
+        sx={{
+          minHeight: "100vh",
+          backgroundColor: "#0f1115",
+          backgroundImage:
+            "radial-gradient(circle at 20% 20%, rgba(0,255,170,0.15), transparent 45%), radial-gradient(circle at 80% 0%, rgba(255,109,58,0.15), transparent 35%)",
+          color: "#fff",
+          pt: "104px",
+          pb: 10,
+        }}
+      >
+        <Container maxWidth="sm" sx={{ pt: 4, pb: 12 }}>
+          <Stack spacing={3}>
+            <Box textAlign="center">
+              <Typography
+                variant="h5"
+                fontWeight={700}
+                color="secondary.main"
+                gutterBottom
+              >
+                Gold Coin Packages
+              </Typography>
+              <Typography variant="body1" color="text.secondary" mt={1.5}>
+                Unlock neon-powered fun with curated packages designed to get
+                you spinning faster.
+              </Typography>
+            </Box>
+
+            <Tabs
+              value={tab}
+              onChange={handleTabChange}
+              variant="fullWidth"
+              sx={{
+                "& .MuiTab-root": {
+                  color: "rgba(255,255,255,0.7)",
+                  fontWeight: 600,
+                },
+                "& .Mui-selected": {
+                  color: "#00ffaa !important",
+                },
+                "& .MuiTabs-indicator": {
+                  backgroundColor: "#00ffaa",
+                },
+              }}
             >
-              Jumbo88 Coin Shop
-            </Typography>
-            <Typography variant="h3" fontWeight={800}>
-              Claim Your First Coin Bundle
-            </Typography>
-            <Typography variant="body1" color="text.secondary" mt={1.5}>
-              Unlock neon-powered fun with curated packages designed to get you
-              spinning faster.
-            </Typography>
-          </Box>
+              <Tab label="Promotions" value={PROMOTIONS_TAB} />
+              <Tab label="Daily Deals" value={DAILY_TAB} />
+            </Tabs>
 
-          <SectionHeader
-            eyebrow="Launch Bonus"
-            title="Starter Pack hits the sweet spot"
-            description="3 turbo-charged bundles, optimized for your first deposit. We highlight the Starter Pack so you know where to begin."
-          />
+            {tab === PROMOTIONS_TAB && (
+              <Stack spacing={2.5}>
+                {mostPopularPackage && (
+                  <PackageCard {...mostPopularPackage} highlighted />
+                )}
+                {starterPackage && <PackageCard {...starterPackage} />}
 
-          <Stack spacing={2.5}>
-            {mostPopularPackage && (
-              <PackageCard {...mostPopularPackage} highlighted />
-            )}
-            {starterPackage && <PackageCard {...starterPackage} />}
-
-            <Grid container spacing={2}>
-              {gridPackages.map((bundle) => (
-                <Grid item xs={6} key={bundle.title}>
-                  <PackageCard {...bundle} />
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    marginLeft: "-8px !important",
+                    width: "calc(100% + 16px)",
+                  }}
+                >
+                  {gridPackages.map((bundle) => (
+                    <Grid
+                      item
+                      xs={6}
+                      key={bundle.title}
+                      sx={{ pl: "8px !important" }}
+                    >
+                      <PackageCard {...bundle} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          </Stack>
-        </Stack>
-      </Container>
+              </Stack>
+            )}
 
-      <StickyBottomCTA
-        title="Starter Pack · 20,000 Coins + 20 Free SC"
-        subtitle="One-time welcome offer · Save 50% today"
-        actionLabel="Claim Starter Pack for $9.99"
-      />
-    </Box>
-  </ThemeProvider>
-);
+            {tab === DAILY_TAB && <DailyPackages />}
+          </Stack>
+        </Container>
+      </Box>
+    </ThemeProvider>
+  );
+};
 
 export default Page;

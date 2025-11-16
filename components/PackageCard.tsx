@@ -15,8 +15,8 @@ type PackageCardProps = {
   freeSC: number;
   price: number;
   oldPrice: number;
-  tag: string;
-  savingsPct: number;
+  tag?: string;
+  savingsPct?: number;
   highlighted?: boolean;
 };
 
@@ -52,24 +52,26 @@ const PackageCard = ({
     }}
   >
     <Box px={{ xs: 2, sm: 3 }} py={{ xs: 2, sm: 3 }}>
-      <Box
-        sx={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          px: { xs: 1.5, sm: 2 },
-          py: { xs: 0.5, sm: 0.75 },
-          borderRadius: "999px",
-          fontSize: { xs: 11, sm: 12 },
-          fontWeight: 600,
-          background: highlighted ? "#00ffaa" : "#ffc400",
-          color: "#0f1115",
-          boxShadow: "0 6px 15px rgba(0,0,0,0.25)",
-          mb: { xs: 1, sm: 1.5 },
-        }}
-      >
-        {tag}
-      </Box>
+      {tag && (
+        <Box
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            px: { xs: 1.5, sm: 2 },
+            py: { xs: 0.5, sm: 0.75 },
+            borderRadius: "999px",
+            fontSize: { xs: 11, sm: 12 },
+            fontWeight: 600,
+            background: highlighted ? "#00ffaa" : "#ffc400",
+            color: "#0f1115",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.25)",
+            mb: { xs: 1, sm: 1.5 },
+          }}
+        >
+          {tag}
+        </Box>
+      )}
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -83,19 +85,21 @@ const PackageCard = ({
         >
           {title}
         </Typography>
-        <Chip
-          label={`Save ${savingsPct}%`}
-          size="small"
-          icon={
-            <LocalOfferOutlinedIcon sx={{ fontSize: { xs: 14, sm: 16 } }} />
-          }
-          sx={{
-            background: "rgba(255,196,0,0.15)",
-            color: "#ffc400",
-            borderRadius: "999px",
-            fontWeight: 600,
-          }}
-        />
+        {savingsPct && (
+          <Chip
+            label={`Save ${savingsPct}%`}
+            size="small"
+            icon={
+              <LocalOfferOutlinedIcon sx={{ fontSize: { xs: 14, sm: 16 } }} />
+            }
+            sx={{
+              background: "rgba(255,196,0,0.15)",
+              color: "#ffc400",
+              borderRadius: "999px",
+              fontWeight: 600,
+            }}
+          />
+        )}
       </Stack>
 
       <Box display="flex" alignItems="baseline" gap={1}>
@@ -154,14 +158,6 @@ const PackageCard = ({
           ${oldPrice.toFixed(2)}
         </Typography>
       </Stack>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ fontSize: { xs: "0.72rem", sm: "0.8rem" } }}
-      >
-        Limited-time introductory price
-      </Typography>
-
       <Button
         fullWidth
         variant="contained"
